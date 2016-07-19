@@ -1,0 +1,29 @@
+	<div class="demo-card-wide mdl-card mdl-shadow--2dp sessCard">
+	  
+	  <div class="mdl-card__title">
+	    <h2 class="mdl-card__title-text">Export Sessions</h2>
+	  </div>
+
+	  <div class="row">
+	  	<etouch-settings></etouch-settings>
+	  </div>
+
+	  <div class="mdl-card__actions mdl-card--border">
+	  	<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect pull-left" ng-click="connect()">
+	      Get Sessions
+	    </a>
+	    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect pull-right" csv-header="csvOrder" filename="eventSessions.csv" ng-csv="exportCsv" add-bom="true" ng-disabled="(!etouch.ready || etouch.sessionNumbers < 1)">
+	      Export	      
+	    </a>
+	    <growl-notifications class="pull-left"></growl-notifications>
+	    <growl-notification ttl="9000" ng-if="etouch.success" class="success" on-close="etouch.success = false">Total Sessions: {{etouch.sessionNumbers}}</growl-notification>
+	    <growl-notification ttl="3000" ng-if="etouch.error" class="error" on-close="etouch.error = false">Error!</growl-notification>
+	  </div>
+
+	  <div class="mdl-card__menu">
+	    <button class="mdl-button authorized" ng-class="{'authorized--confirmed' : etouch.authorized}">
+	      {{etouch.authorizedText}}
+	    </button>
+	  </div>
+
+	</div>
